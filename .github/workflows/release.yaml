@@ -31,6 +31,8 @@ jobs:
         # Create the new vA.B.C tag, then update the vA.B tag, then update the
         # vA tag.
         run: |
+          git config user.name "GitHub Actions"
+          git config user.email "github-actions@users.noreply.github.com"
           git tag "v${version}"
           git tag --force "v$(sed 's/\.[0-1]*$//' <<<"${version}")"
           git tag --force "v$(sed 's/\.[0-1]*\.[0-1]*$//' <<<"${version}")"
