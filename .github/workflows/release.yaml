@@ -42,7 +42,7 @@ jobs:
         env:
           GH_TOKEN: ${{github.token}}
         run: |
-          gh auth login --git-protocol https --with-token <<<"${GH_TOKEN}"
+          # gh auth login --git-protocol https --with-token <<<"${GH_TOKEN}"
           gh release create \
             --repo ${{github.repository}} \
             --target main \
