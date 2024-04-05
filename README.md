@@ -60,29 +60,20 @@ jobs:
 
 ## Steps
 
-The workflow runs the steps described in the following sections.
+The workflow runs the following steps.
 
-### Verify the Version
-
-The version must be a 3-component [semantic version](https://semver.org).
-This step verifies the input.
-A `v` prefix, such as `v1.0.0`, is allowed; the workflow strips it out.
-
-### Clone the Repository
-
-This step just clones the repository to the runner.
-
-### Tag the Repository
-
-This step creates the local tags `vA.B.C`, `vA.B`, and `vA` on the `main` branch.
-The tags `vA.B` and `vA` are created with `--force`; if they already exist, they move to the new commit.
-
-### Push the Tags
-
-This step force pushes the new tags to the origin remote.
-
-### Create a Release
-
-This step creates a new GitHub Release at the new `vA.B.C` tag.
-The release title is `A.B.C`.
-For now, the release notes are empty.
+1. **Verify the Version**  
+   The version must be a 3-component [semantic version](https://semver.org).
+   This step verifies the input.
+   A `v` prefix, such as `v1.0.0`, is allowed; the workflow strips it out.
+1. **Clone the Repository**  
+   This step just clones the repository to the runner.
+1. **Tag the Repository**  
+   This step creates the local tags `vA.B.C`, `vA.B`, and `vA` on the `main` branch.
+   The tags `vA.B` and `vA` are created with `--force`; if they already exist, they move to the new commit.
+1. **Push the Tags**  
+   This step force pushes the new tags to the origin remote.
+1. **Create a Release**  
+   This step creates a new GitHub Release at the new `vA.B.C` tag.
+   The release title is `A.B.C`.
+   For now, the release notes are empty.
