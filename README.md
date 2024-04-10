@@ -77,3 +77,14 @@ The workflow runs the following steps.
    This step creates a new GitHub Release at the new `vA.B.C` tag.
    The release title is `A.B.C`.
    For now, the release notes are empty.
+
+## Issue Tracking
+
+[![GitHub Issues or Pull Requests by label](https://img.shields.io/github/issues/brobeson/ActionRelease/bug?logo=github&label=Bugs)](https://github.com/brobeson/ActionRelease/issues?q=is%3Aissue+is%3Aopen+label%3Abug)
+[![GitHub Issues or Pull Requests by label](https://img.shields.io/github/issues/brobeson/ActionRelease/enhancement?logo=github&label=Enhancements)](https://github.com/brobeson/ActionRelease/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement)
+[![GitHub Issues or Pull Requests by label](https://img.shields.io/github/issues/brobeson/ActionRelease/new%20step?logo=github&label=New%20Steps)](https://github.com/brobeson/ActionRelease/issues?q=is%3Aopen+is%3Aissue+label%3A%22new+step%22)
+[![GitHub milestone details](https://img.shields.io/github/milestones/progress/brobeson/ActionRelease/1?logo=github)](https://github.com/brobeson/ActionRelease/milestone/1)
+
+[Report a bug](https://github.com/brobeson/ActionRelease/issues/new?assignees=brobeson&labels=bug&projects=&template=bug.yaml) |
+[Request a new step](https://github.com/brobeson/ActionRelease/issues/new?assignees=brobeson&labels=new+step&projects=&template=new_step.yaml) |
+[Update an existing step](https://github.com/brobeson/ActionRelease/issues/new?assignees=brobeson&labels=enhancement&projects=&template=enhancement.yaml)
