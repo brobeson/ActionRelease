@@ -32,8 +32,8 @@ jobs:
         # vA tag.
         run: |
           git tag "v${version}"
-          git tag --force "v$(sed 's/\.[0-1]*$//' <<<"${version}")"
-          git tag --force "v$(sed 's/\.[0-1]*\.[0-1]*$//' <<<"${version}")"
+          git tag --force "v$(sed 's/\.[0-9]*$//' <<<"${version}")"
+          git tag --force "v$(sed 's/\.[0-9]*\.[0-9]*$//' <<<"${version}")"
       - name: Push the tags
         run: git push --tags --force
       - name: Create a release on GitHub
