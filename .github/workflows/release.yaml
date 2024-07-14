@@ -30,7 +30,10 @@ jobs:
           ref: main
           fetch-tags: true
       - name: Get next release milestone
-        run: gh repo view --json milestones
+        run: >
+          gh repo view
+          --json milestones
+          --jq '.milestones[] | select(.title == "Next Release") | .number'
       # - name: Tag the repository
       #   # Create the new vA.B.C tag, then update the vA.B tag, then update the
       #   # vA tag.
