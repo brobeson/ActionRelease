@@ -35,8 +35,16 @@ jobs:
           --json milestones
           --jq '.milestones[] | select(.title == "Next Release") | .number');
           echo "MILESTONE=${MILESTONE}" >> ${GITHUB_ENV}
-      - name: test
-        run: echo ${MILESTONE}
+      # - name: test
+      #   run: echo ${MILESTONE}
+      - name: Rename the milestone
+        run: >
+          gh api
+          --method PATCH
+          -H "Accept: application/vnd.github+json"
+          -H "X-GitHub-Api-Version: 2022-11-28"
+          /repos/brobeson/ActionRelease/milestones/${MILESTONE}
+          -f "title=${{inputs.version}}"
       # - name: Tag the repository
       #   # Create the new vA.B.C tag, then update the vA.B tag, then update the
       #   # vA tag.
