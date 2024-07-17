@@ -33,7 +33,7 @@ jobs:
         run: >
           MILESTONE=$(gh repo view
           --json milestones
-          --jq '.milestones[] | select(.title == "Next Release") | .number')
+          --jq '.milestones[] | select(.title == "Next Release") | .number');
           echo "MILESTONE=${MILESTONE}" >> ${GITHUB_ENV}
       - name: test
         run: echo ${MILESTONE}
