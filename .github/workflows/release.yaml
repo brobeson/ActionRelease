@@ -31,9 +31,12 @@ jobs:
           fetch-tags: true
       - name: Get next release milestone
         run: >
-          gh repo view
+          MILESTONE=$(gh repo view
           --json milestones
-          --jq '.milestones[] | select(.title == "Next Release") | .number'
+          --jq '.milestones[] | select(.title == "Next Release") | .number')
+          echo "MILESTONE=${MILESTONE}" >> ${GITHUB_ENV}
+      - name: test
+        run: echo ${MILESTONE}
       # - name: Tag the repository
       #   # Create the new vA.B.C tag, then update the vA.B tag, then update the
       #   # vA tag.
