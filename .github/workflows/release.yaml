@@ -29,20 +29,23 @@ jobs:
         with:
           ref: main
           fetch-tags: true
-      - name: Check for an existing milestone
+      - name: Check for an existing version milestone
         run: >
           VERSION_MILESTONE=$(gh repo view
           --json milestones
           --jq '.milestones[] | if .title | contains("${{inputs.version}}") then .number else 0 end');
           echo "VERSION_MILESTONE=${VERSION_MILESTONE}" >> ${GITHUB_ENV}
-      # - name: Get next release milestone
-      #   run: >
-      #     MILESTONE=$(gh repo view
-      #     --json milestones
-      #     --jq '.milestones[] | select(.title == "Next Release") | .number');
-      #     echo "MILESTONE=${MILESTONE}" >> ${GITHUB_ENV}
+      - name: Get next release milestone
+        run: >
+          NEXT_MILESTONE=$(gh repo view
+          --json milestones
+          --jq '.milestones[] | if .title == "Next Release" then .number else 0 end');
+          # --jq '.milestones[] | select(.title == "Next Release") | .number');
+          echo "NEXT_MILESTONE=${NEXT_MILESTONE}" >> ${GITHUB_ENV}
       - name: test
-        run: echo ${VERSION_MILESTONE}
+        run: |
+          echo "Version: ${VERSION_MILESTONE}"
+          echo "Next:    ${NEXT_MILESTONE}"
       # - name: Rename the milestone
       #   run: >
       #     gh api
