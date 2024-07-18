@@ -29,35 +29,40 @@ jobs:
         with:
           ref: main
           fetch-tags: true
-      - name: Get next release milestone
+      - name: Check for an existing milestone
         run: >
-          MILESTONE=$(gh repo view
+          gh repo view
           --json milestones
-          --jq '.milestones[] | select(.title == "Next Release") | .number');
-          echo "MILESTONE=${MILESTONE}" >> ${GITHUB_ENV}
+          --jq '.milestones[].title | contains("${{inputs.version}}")'
+      # - name: Get next release milestone
+      #   run: >
+      #     MILESTONE=$(gh repo view
+      #     --json milestones
+      #     --jq '.milestones[] | select(.title == "Next Release") | .number');
+      #     echo "MILESTONE=${MILESTONE}" >> ${GITHUB_ENV}
       # - name: test
       #   run: echo ${MILESTONE}
-      - name: Rename the milestone
-        run: >
-          gh api
-          --method PATCH
-          -H "Accept: application/vnd.github+json"
-          -H "X-GitHub-Api-Version: 2022-11-28"
-          /repos/brobeson/ActionRelease/milestones/${MILESTONE}
-          -f "title=${{inputs.version}}"
-          -f "state=closed"
-          -f "description=Issues scheduled for version ${{inputs.version}}"
-      - name: Create the new milestone
-        run: >
-          gh api
-          --method POST
-          -H "Accept: application/vnd.github+json"
-          -H "X-GitHub-Api-Version: 2022-11-28"
-          /repos/brobeson/ActionRelease/milestones
-          -f "title=Next Release"
-          -f "state=open"
-          -f "description=Issues scheduled for the next release"
-          --jq '.number'
+      # - name: Rename the milestone
+      #   run: >
+      #     gh api
+      #     --method PATCH
+      #     -H "Accept: application/vnd.github+json"
+      #     -H "X-GitHub-Api-Version: 2022-11-28"
+      #     /repos/brobeson/ActionRelease/milestones/${MILESTONE}
+      #     -f "title=${{inputs.version}}"
+      #     -f "state=closed"
+      #     -f "description=Issues scheduled for version ${{inputs.version}}"
+      # - name: Create the new milestone
+      #   run: >
+      #     gh api
+      #     --method POST
+      #     -H "Accept: application/vnd.github+json"
+      #     -H "X-GitHub-Api-Version: 2022-11-28"
+      #     /repos/brobeson/ActionRelease/milestones
+      #     -f "title=Next Release"
+      #     -f "state=open"
+      #     -f "description=Issues scheduled for the next release"
+      #     --jq '.number'
       # - name: Tag the repository
       #   # Create the new vA.B.C tag, then update the vA.B tag, then update the
       #   # vA tag.
